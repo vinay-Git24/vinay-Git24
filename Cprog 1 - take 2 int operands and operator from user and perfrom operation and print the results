@@ -1,0 +1,44 @@
+/*WAP which takes two interger operands & operator from 
+user and perfrom the operations and the print the results*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int a,b,res,ch;
+    printf("\n\tMENU\n");
+    printf("\n\t(1)ADDITION\n");
+    printf("\n\t(2)SUBTRACTION\n");
+    printf("\n\t(3)MULTIPLICTAION\n");
+    printf("\n\t(4)DIVISION\n");
+    printf("\n\t(5)REMAINDER\n");
+    printf("\n\t(0)EXIT\n");
+    printf("Enter your choice :\n");
+    scanf("%d",&ch);
+    if(ch<=5&ch>0)
+    {
+        printf("Enter two numbers :\n");
+        scanf("%d%d",&a,&b);
+        
+    }
+    switch(ch)
+    {
+        case 1 : res = a+b;
+        printf("\nAddition:%d",res);break;
+        case 2 : res = a-b;
+        printf("\nSubtraction:%d",res);break;
+        case 3 : res = a*b;
+        printf("\nMultilication:%d",res);break;
+        case 4 : res = a/b;
+        printf("\nDivision:%d",res);break;
+        case 5 : res = a%b;
+        printf("\nRemainder:%d",res);break;
+        case 0 : 
+        printf("\nchoice terminated");exit(0);break;
+        default:
+        printf("\ninvalid choice");
+    }
+    
+    return 0;
+}
+
