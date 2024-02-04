@@ -1,0 +1,12 @@
+/*WAP to using gets() and puts() do display input character*/
+#include <stdio.h>
+
+int main()
+{
+    char ch [50];
+    printf("Enter a string : ");
+    fgets(ch,sizeof(ch),stdin);
+    printf("you entered : ");
+    puts(ch);
+    return 0;
+}
