@@ -1,0 +1,26 @@
+/*WAP using if else statement to find largest no. among the given two integer*/
+#include <stdio.h>
+
+int main()
+{
+    int X,Y;
+    printf("enter the first integer : \n");
+    scanf("%d",&X);
+    printf("enter the second integer : \n");
+    scanf("%d",&Y);
+    if (X>Y)
+    {
+        printf("the largest number: %d\n",X);
+    }
+    else if (Y>X)
+    {
+        printf("the largest number: %d\n",Y);
+    }
+    else 
+    {
+        printf("both numbers are equal\n");
+    }
+
+    return 0;
+}
+
