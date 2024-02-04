@@ -1,0 +1,47 @@
+/*WAP in C to find the Factorial of a given integer no. using both recursive and non recursive function*/
+#include <stdio.h>
+int
+recursiveFactorial (int n)
+{
+  if (n == 0 || n == 1)
+	{
+	  return 1;
+	}
+  else
+	{
+	  return n * recursiveFactorial (n - 1);
+	}
+}
+
+int
+nonRecursiveFactorial (int n)
+{
+  int result = 1;
+  for (int i = 1; i <= n; ++i)
+	{
+	  result *= i;
+	}
+
+  return result;
+}
+
+int
+main ()
+{
+  int num;
+  printf ("Enter a non-negative integer: ");
+  scanf ("%d", &num);
+  if (num < 0)
+	{
+	  printf ("Factorial is not defined for negative numbers.\n");
+	}
+  else
+	{
+	  printf ("Factorial using recursive function: %d\n",
+			  recursiveFactorial (num));
+	  printf ("Factorial using non-recursive function: %d\n",
+			  nonRecursiveFactorial (num));
+	}
+
+  return 0;
+}
