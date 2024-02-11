@@ -1,0 +1,58 @@
+Write a program to read data from the keyboard, write it to a file called
+INPUT, again read the same data from the INPUT file, and copy to that
+another file and also display it on the screen.
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SIZE 100
+
+int main() {
+    FILE *inputFile, *outputFile;
+    char data[MAX_SIZE];
+
+    // Read data from the keyboard
+    printf("Enter data: ");
+    fgets(data, MAX_SIZE, stdin);
+
+    // Write data to the INPUT file
+    inputFile = fopen("INPUT.txt", "w");
+
+    if (inputFile == NULL) {
+        perror("Error opening INPUT file");
+        return 1; // Exit with an error code
+    }
+
+    fprintf(inputFile, "%s", data);
+
+    fclose(inputFile);
+
+    // Read data from the INPUT file
+    inputFile = fopen("INPUT.txt", "r");
+
+    if (inputFile == NULL) {
+        perror("Error opening INPUT file for reading");
+        return 1; // Exit with an error code
+    }
+
+    // Copy data to another file and display on the screen
+    outputFile = fopen("OUTPUT.txt", "w");
+
+    if (outputFile == NULL) {
+        perror("Error opening OUTPUT file");
+        fclose(inputFile);
+        return 1; // Exit with an error code
+    }
+
+    printf("\nData read from INPUT file and copied to OUTPUT file:\n");
+
+    while (fgets(data, MAX_SIZE, inputFile) != NULL) {
+        fprintf(outputFile, "%s", data);
+        printf("%s", data);
+    }
+
+    // Close the files
+    fclose(inputFile);
+    fclose(outputFile);
+
+    return 0;
+}
