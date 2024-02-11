@@ -1,0 +1,50 @@
+WAP to check entered year is leap year or not ?
+#include <stdio.h>
+
+int main() {
+    int year;
+
+    // Input year from the user
+    printf("Enter a year: ");
+    scanf("%d", &year);
+
+    // Check if it's a leap year
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+        printf("%d is a leap year.\n", year);
+    } else {
+        printf("%d is not a leap year.\n", year);
+    }
+
+    return 0;
+}
+
+// code 2 : 
+
+#include <stdio.h>
+
+int main(){
+	int yrs;
+   printf("Enter a yrs");
+   scanf("%d", &yrs);
+
+   // leap year if perfectly divisible by 400
+   if (yrs % 400 == 0) {
+      printf("%d is a leap yrs", yrs);
+   }
+   // not a leap yrs if divisible by 100
+   // but not divisible by 400
+   else if (yrs % 100 == 0) {
+      printf("%d is not a leap yrs", yrs);
+   }
+   // leap yrs if not divisible by 100
+   // but divisible by 4
+   else if (yrs % 4 == 0) {
+      printf("%d is a leap yrs", yrs);
+   }
+   // all other years are not leap yrs
+   else {
+      printf("%d is not a leap yrs", yrs);
+   }
+	
+    return 0;
+}
