@@ -1,0 +1,36 @@
+to find both the largest and smallest number in a list of integers using an Array.
+
+#include <stdio.h>
+
+int main() {
+    int n;
+
+    // Input the number of elements in the array
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    // Input array elements
+    printf("Enter the elements of the array:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Find the largest and smallest numbers
+    int largest = arr[0], smallest = arr[0];
+
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > largest) {
+            largest = arr[i];
+        } else if (arr[i] < smallest) {
+            smallest = arr[i];
+        }
+    }
+
+    // Display the results
+    printf("Largest Number: %d\n", largest);
+    printf("Smallest Number: %d\n", smallest);
+
+    return 0;
+}
