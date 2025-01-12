@@ -100,6 +100,19 @@ playbook: apache.yml
          state: restarted
 [itadmin@acn punepro]$
 
+[itadmin@acn punepro]$ curl http://node1
+welcome to Apache web server hosted with Ansible Automation
+welcome to Apache web server
+[itadmin@acn punepro]$ curl http://node2
+welcome to Apache web server hosted with Ansible Automation
+welcome to Apache web server
+[itadmin@acn punepro]$ curl http://node3
+welcome to Apache web server hosted with Ansible Automation
+welcome to Apache web server
+[itadmin@acn punepro]$ pwd
+/home/itadmin/punepro
+[itadmin@acn punepro]$
+
 [itadmin@acn punepro]$ ansible-playbook book5.txt --syntax-check
 
 playbook: book5.txt
