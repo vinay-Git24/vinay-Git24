@@ -1,0 +1,56 @@
+[itadmin@acn punepro]$ ansible-playbook book3.yml --syntax-check
+
+playbook: book3.yml
+ansible-playbook book2.yml --syntax-check
+
+playbook: book2.yml
+ansible-playbook book1.yml --syntax-check
+
+playbook: book1.yml
+[itadmin@acn punepro]$
+
+[itadmin@acn punepro]$ cat book1.yml
+---
+ - name: manage user account
+   hosts: all
+   tasks:
+     - name: create user harry
+       user:
+         name: harry
+         state: present
+[itadmin@acn punepro]$ pwd
+/home/itadmin/punepro
+[itadmin@acn punepro]$
+
+[itadmin@acn punepro]$ cat book2.yml
+---
+ - name: manage group account
+   hosts: all
+   tasks:
+     - name: create it group
+       group:
+         name: it
+         state: present
+[itadmin@acn punepro]$
+
+[itadmin@acn punepro]$ cat book3.yml
+---
+ - name: manage user and group
+   hosts: all
+   tasks:
+     - name: create user hpuser
+       user:
+         name: hpuser
+         state: present
+     - name: create group hpgrp
+       group:
+         name: hpgrp
+         state: present
+     - name: create directory hp
+       file:
+         path: /hp
+         state: directory
+         owner: hpuser
+         group: hpgrp
+[itadmin@acn punepro]$
+
