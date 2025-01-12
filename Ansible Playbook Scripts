@@ -100,5 +100,38 @@ playbook: apache.yml
          state: restarted
 [itadmin@acn punepro]$
 
+[itadmin@acn punepro]$ ansible-playbook book5.txt --syntax-check
+
+playbook: book5.txt
+[itadmin@acn punepro]$ ansible-playbook book5.txt
+
+PLAY [create user sara] ************************************************************************************************************************************************
+
+TASK [create user sara] ************************************************************************************************************************************************
+changed: [node3]
+changed: [node2]
+changed: [node1]
+
+PLAY RECAP *************************************************************************************************************************************************************
+node1                      : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+node2                      : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+node3                      : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[itadmin@acn punepro]$ pwd
+/home/itadmin/punepro
+[itadmin@acn punepro]$ cat book5.txt
+---
+ - name: create user sara
+   hosts: all
+   gather_facts: no
+   tasks:
+     - name: create user sara
+       user:
+         name: sara
+         state: present
+[itadmin@acn punepro]$ pwd
+/home/itadmin/punepro
+[itadmin@acn punepro]$
+
 
 
