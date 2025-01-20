@@ -1,0 +1,259 @@
+yum server configuration:
+=====================================================================================
+Step1: configure ip address on server.
+
+#nmcli conn add con-name con1 ifname enp0s3 type ethernet ipv4.add 192.168.1.2/24 gw4 192.168.1.1 ipv4.dns 192.168.1.1 connection.autoconnect yes ipv4.method manual
+
+#nmcli con show 
+#nmcli con down enp0s3
+#nmcli con up con1
+
+#ifconfig
+#hostnamectl set-hostname server.example.com
+#hostname
+
+=====================================================================================
+Step2: check iso file path and create repo file
+
+#lsblk
+#cd /etc/yum.repos.d/
+#vim server.repo
+[1]
+name=app
+baseurl=file:///run/media/root/RHEL9-0-0-BaseOS-x86_64/AppStream
+enabled=1
+gpgcheck=0
+[2]
+name=base
+baseurl=file:///run/media/root/RHEL9-0-0-BaseOS-x86_64/BaseOS
+enabled=1
+gpgcheck=0
+:wq
+
+#yum clean all
+#yum repolist
+===========================================================================================
+Step3: Install, start and enable httpd
+
+#yum install httpd
+#systemctl start httpd
+#systemctl enable httpd
+============================================================================================
+step4: add http service in firewall
+#firewall-cmd  --permanent  --add-service=http
+#firewall-cmd  --reload
+=============================================================================================
+ste5: copy and paste all packages in /var/www/html/
+
+#cd run/media/root/RHEL9-0-0-BaseOS-x86_64/
+#cp -rvf AppStream /var/www/html/
+#cp -rvf BaseOS /var/www/html/
+
+==============================================================================================
+Step6: update repo file
+
+#vim /etc/yum.repos.d/server.repo
+[1]
+name=app
+baseurl=http://192.168.1.2/AppStream
+enabled=1
+gpgcheck=0
+[2]
+name=base
+baseurl=http://192.168.1.2/BaseOS
+enabled=1
+gpgcheck=0
+:wq
+
+#yum clean all
+#yum repolist
+==============================================================================================
+Step7: configure ip address on client.
+
+#nmcli conn add con-name con1 ifname enp0s3 type ethernet ipv4.add 192.168.1.3/24 gw4 192.168.1.1 ipv4.dns 192.168.1.1 connection.autoconnect yes ipv4.method manual
+
+#nmcli con show 
+#nmcli con down enp0s3
+#nmcli con up con1
+
+#ifconfig
+#hostnamectl set-hostname client.example.com
+#hostname
+=============================================================================================
+Step8: update repo file
+
+#scp -r root@192.168.1.2:/yum.repos.d/server.repo /etc/yum.repos.d/
+
+or 
+
+#vim /etc/yum.repos.d/server.repo
+[1]
+name=app
+baseurl=http://192.168.1.2/AppStream
+enabled=1
+gpgcheck=0
+[2]
+name=base
+baseurl=http://192.168.1.2/BaseOS
+enabled=1
+gpgcheck=0
+:wq
+
+Now verify yum working or not
+
+#yum clean all
+#yum repolist
+#yum install vsftpd
+
+Configuration of Maria DB :
+
+MariaDB is a free and open source database management system. It
+acts as a drop replacement for Oracle MySQL server. It is a community
+drive and developed branch of Oracle MySQL. MariaDB is a multi-user,
+multi-threaded SQL database server.
+It is a fork of famous database server MySQL, developed by MariaDB
+Corporation Ab, led by original developers of MySQL.
+
+A relational Database is a mechanism that allows persistence data in
+organized way.
+Databases data item organized as set of tables which table represent
+an entity in a given tables column correspondence to an attribute of
+that record.
+
+#yum install mariadb mariadb-server
+
+#systemctl start mariadb.service
+#systemctl restart mariadb.service
+#systemctl status mariadb.service
+#systemctl enable mariadb.service
+
+#firewall-cmd --permanent --add-service=mysql
+#firewall-cmd --reload
+
+For login into database
+#mysql -u root
+>show databases;
+>exit;
+
+Note:
+If we want secure installation of database perform following command
+
+#mysql_secure_installation
+
+#mysql -u root -p
+
+>show databases;
+>exit
+
+log in as root user:
+
+#mysql -u root -p
+
+Create a new MariaDB database called mydb1. Type the
+following command
+
+>create database mydb1;
+
+>show databases;
+
+Create a new user called suraj for database called mydb1:
+
+>grant all on mydb1.* to suraj@localhost identified by
+'secretpassword';
+
+>exit
+
+#mysql -u suraj -p
+
+>show databases;
+>exit
+
+ CREATE DATABASE –
+To Create database.
+
+ CREATE TABLE –
+To Create the table.
+
+ INSERT –
+To add/insert data to table i.e. inserts new rows into an
+existing table.
+
+#mysql -u root -p
+
+Sample outputs:
+MariaDB [(none)]>
+
+MariaDB [(none)]> create database books;
+
+MariaDB [(none)]> show databases;
+
+MariaDB [(none)]> use books;
+
+MariaDB [(books)]>
+
+MariaDB[(books)]> create table students (id INT, name
+VARCHAR(20), email VARCHAR(20));
+
+MariaDB[(books)]> show tables;
+
++-----------------+
+| Tables_in_books |
++-----------------+
+| students |
++-----------------+
+
+1 row in set (0.00 sec)
+
+MariaDB[(books)]> insert into students (id,name,email)
+values(1,“Karan",“karan@live.com");
+
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB[(books)]> insert into students (id,name,email)
+values(2,"Priya","priya@gmail.com");
+
+MariaDB[(books)]> insert into students (id,name,email)
+values(3,“Sachin",“sachin@yahoo.com");
+
+MariaDB[(books)]> select * from students;
+
++------+-------+---------------------+
+| id | name | email |
++------+-------+---------------------+
+| 1 | Kiran | kiran@live.com |
+| 2 | Priya | priya@gmail.com |
+| 3 | Sachin | sachin@yahoo.com |
++------+-------+----------------------+
+
+3 rows in set (0.00 sec)
+
+MariaDB[(books)]>exit
+
+#mysqldump -u root -p books > /root/booksdb.sql
+
+#cd /root
+#ls
+#cat booksdb.sql
+
+#mysql -u root -p
+>drop database books;
+>show databases;
+>exit
+
+#mysql -u root -p
+>create database books;
+>show databases;
+>use books;
+>show tables;
+>quit
+
+For restore database
+
+#mysql -u root -p books < /root/booksdb.sql
+
+#mysql -u root -p
+
+> use books;
+> show tables;
+> select * from students;
+> quit
