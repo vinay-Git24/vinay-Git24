@@ -1,0 +1,81 @@
+SQL Prctice BCA Sem 3
+
+CREATE TABLE winner (id INT, year INT, subject VARCHAR(50), winner VARCHAR(100), counrty VARCHAR(50));
+
+INSERT INTO  winner (id, Year, subject, winner,counrty) VALUES (1, 1970, 'chemistry', 'Walter James', 'France'),(2, 2020, 'maths', 'Saurabh Singh', 'Germany'),(3, 2021, 'Literature', 'Vartika Rawat', 'USA');
+ 
+select * FROM winner;
+
+SELECT * FROM winner WHERE winner LIKE 'W__t%';
+
+SELECT * FROM winner WHERE counrty IN ('FRANCE');
+
+PL/SQL
+
+DECLARE num NUMBER:=1;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('The first 10 numbers are:');
+    For i IN 1..10 LOOP
+        DBMS_OUTPUT.PUT_LINE(num);
+        num := num + 3;
+    END LOOP;
+END;
+
+second way:
+--Declare a variable to hold the current number
+DECLARE
+ current_number NUMBER := 1;--intitalize it to 2
+ counter NUMBER :=0;--intitalize a counter for the loop
+BEGIN
+--print the initial mesage
+ DBMS_OUTPUT.PUT('The first 10 numbers are:');
+LOOP
+--print the current number followed by tab
+ DBMS_OUTPUT.PUT(current_number || CHR(9));--CHR(9) reprsent a tab character
+
+--increment the current number by 3 
+ current_number := current_number +3;
+--increment the counter 
+ counter := counter + 1;
+
+--Exit the loop if the counter reaches to 10 
+ EXIT WHEN counter = 10;
+END LOOP;
+
+--print a new line at the end
+DBMS_OUTPUT.NEW_LINE;
+END;
+
+
+Writ a PL/SQL Code to find the number is armstrong number 
+
+CREATE OR REPLACE FUNCTION
+is_armstrong(n NUMBER) RETURN
+VARCHAR2 IS
+  digit NUMBER;
+  sum_of_cubes NUMBER := 0;
+  temp NUMBER := n;
+BEGIN
+ WHILE temp > 0 LOOP
+ digit := MOD(temp, 10); --extract last digit
+ sum_of_cubes := sum_of_cubes + POWER(digit, 3); --Add cube of digit
+ temp := TRUNC(temp / 10); --Remove last digit
+END LOOP;
+
+IF sum_of_cubes = n THEN
+   RETURN 'armstrong number';
+   ELSE
+    RETURN 'not an armstrong number';
+   END IF;
+END;
+
+DECLARE
+ result VARCHAR2(50);
+BEGIN
+ result := is_armstrong(371); --call function with 371
+ DBMS_OUTPUT.PUT_LINE(result);
+END;      
+
+
+
+   
