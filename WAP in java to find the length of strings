@@ -1,0 +1,11 @@
+import java.util.Scanner;
+public class Main
+{
+    public static void main(String[] args)
+    {
+        char s1[] = {'E','M','S','R','I','S','K'};
+        String s = new String(s1);
+        System.out.println(s.length()); //used to find the length of string
+    }
+}
+ 
