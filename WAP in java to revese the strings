@@ -1,0 +1,12 @@
+import java.util.Scanner;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        StringBuffer s = new StringBuffer("vinay" +" " + "kumar");
+        System.out.println(s);
+        s.reverse(); //how to revese the String
+        System.out.println(s);
+    }
+}
