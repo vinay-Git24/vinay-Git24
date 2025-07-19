@@ -1,0 +1,35 @@
+import java.util.Scanner;
+class a //base class a 
+{
+    int x; //only we initialize the variable in constructor function. 
+    a() // constructor function
+    {
+        x=9; //assigning value to the variable
+    } 
+    public void display() //method class of base class a 
+    {
+        System.out.print(x);
+    }
+}
+class b extends a //derived class
+{
+    int y; //only user needs to intilaize the variable in constructor function.
+    b() //constructor function of class b 
+    {
+        super();
+        y=7; //assigning value to the variable
+    }
+    public void add() //method class of derived class b 
+    {
+        System.out.print(x+y);
+    }
+}
+public class Main 
+{
+public static void main(String[] args)
+{
+    b b1 = new b(); //object of b 
+    
+    b1.add();// method class of derived class b 
+}
+}
