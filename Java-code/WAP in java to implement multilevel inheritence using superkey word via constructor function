@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+class a //base class a 
+{
+    int x;
+    a() // constructor function
+    {
+        x=9;
+    } 
+    public void display() //method class of base class a 
+    {
+        System.out.print(x);
+    }
+}
+class b extends a //derived class
+{
+    int y;
+    b() //constructor function of class b 
+    {
+        super();
+        y=7;
+    }
+    public void display1() //method class of derived class b 
+    {
+        System.out.print(y);
+    }
+}
+public class Main 
+{
+
+public static void main(String[] args)
+{
+    b b1 = new b(); //object of b 
+    b1.display();// method class of base class a 
+    b1.display1();// method class of derived class b 
+}
+}
