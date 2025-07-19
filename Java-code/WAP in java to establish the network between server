@@ -1,0 +1,24 @@
+import java.net.*;
+import java.io.*;
+
+public class SimpleServer
+{
+    public static void main(String[] args) throws IOException
+    {
+        ServerSocket serverSocket = new ServerSocket(5000);
+        System.out.println("Server started, waiting for a client...");
+
+        Socket clientSocket = serverSocket.accept(); //wait for client
+        System.out.println("Client Connected!");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),true);
+        String message = in.readLine();
+        System.out.printf("Received from client:" + message);
+        out.println("Hello from server!");
+        clientSocket.close();
+        serverSocket.close();
+
+
+    }
+}
