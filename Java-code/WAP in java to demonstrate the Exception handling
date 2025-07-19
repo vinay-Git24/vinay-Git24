@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+import java.io.*;
+
+public class Main
+{
+    public static void main(String[] args) 
+    {
+        try
+        {
+            int x=9;
+            int z;
+            z = x/0;
+            System.out.print(z);
+        }
+        catch(Exception e)
+        {}
+        finally 
+        {
+            System.out.print("hello");
+        }
+    }
+}
