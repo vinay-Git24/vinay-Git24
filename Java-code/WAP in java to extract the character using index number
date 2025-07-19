@@ -1,0 +1,10 @@
+import java.util.Scanner;
+public class Main
+{
+    public static void main(String[] args)
+    {
+        char a;
+        a = "abc".charAt(0);
+        System.out.println(a);
+    }
+}
