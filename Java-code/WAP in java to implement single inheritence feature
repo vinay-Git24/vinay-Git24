@@ -1,0 +1,27 @@
+import java.util.Scanner;
+class vinay //base class
+{
+    public void display() //method of class vinay
+    {
+        System.out.println("SocietyMates" + " "+ "Vikas Tiwar"+" "+ " Vinay Soni"+ " "+ "Lovnish Bhanot"+" "+"Mihir Gupta"+ " "+"Ananya Bhatnagar"+ " "+ "G-10");
+    }
+}
+class vikas extends vinay //derived class
+{
+    public void display1() // method of class vikas
+    {
+        System.out.println("Railvihar MDC Sector 4 Panchkula");
+    }
+}
+public class Main 
+{
+    public static void main(String[] args)
+    {
+        vikas vikas1 = new vikas(); //object of vikas
+        vikas1.display(); //method of class vinay 
+        vikas1.display1(); //method of class vikas
+
+
+    }
+}
+
