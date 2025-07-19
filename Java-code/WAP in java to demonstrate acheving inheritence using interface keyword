@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+interface abc 
+{
+    public abstract void display(); //inside interface only we are declaring the function declaration. As function is abstract we cannot create function body insdie interface.
+}
+
+class b implements abc
+{
+    public void display()
+    {
+        System.out.print("hello");
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        b b1 = new b();
+        b1.display();
+    }
+}
