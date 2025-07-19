@@ -1,0 +1,13 @@
+import java.util.Scanner;
+public class Main
+{
+    public static void main(String[] args)
+    {
+        String a = "This is manipal University";
+        int start = 8;
+        int end = 15;
+        char b[] = new char[end-start];
+        a.getChars(start,end,b,0);
+        System.out.println(b);
+    } 
+}
