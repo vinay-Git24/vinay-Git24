@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class Main
+{
+    public static void main(String args[])
+    {
+        byte a[] = {86,73,78,65,89}; //array of number with data type byte
+        String str1 = new String(a);
+        System.out.println(str1);
+        
+        String str2 = new String(a,1,4); //extraction of characters 
+        System.out.println(str2);
+    }
+}
