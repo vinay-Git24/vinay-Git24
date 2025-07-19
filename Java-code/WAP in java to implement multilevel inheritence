@@ -1,0 +1,38 @@
+//WAP in java to demonstrate multilevel inheritence 
+
+import java.util.Scanner;
+
+class a //base class
+{
+    public void display() //method of class a
+    {
+        System.out.println("hello");
+    }
+}
+class b extends a //derived class
+{
+    public void display1() //method of class b 
+    {
+        System.out.println("hello manipal");
+    }
+
+}
+
+class c extends b 
+{
+    public void display2()
+    {
+        System.out.println("hello2");
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        c b1 = new c(); //object of c 
+        b1.display(); //method of class a 
+        b1.display1(); //method of class b 
+        b1.display2(); //method of class c 
+    }
+}
