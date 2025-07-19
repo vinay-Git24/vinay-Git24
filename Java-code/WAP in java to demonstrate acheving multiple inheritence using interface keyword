@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+interface abc // interface name 1
+
+{
+    public abstract void display();
+}
+interface bb //interface name 2
+{
+    public abstract void display1();
+}
+class b implements abc,bb //we can call multiple interface in a single class b using comma(,)
+{
+    public void display()
+    {
+        System.out.println("hello");
+    }
+    public void display1()
+    {
+        System.out.println("hello12");
+    }
+}
+public class Main
+{
+    public static void main(String[] args)
+    {
+        b b1 = new b(); //creation of obj b 
+        b1.display();
+        b1.display1();
+    }
+}
